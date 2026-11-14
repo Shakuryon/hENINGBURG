@@ -26,8 +26,36 @@
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   });
+  /* ---------- "Why Wash" dropdown ---------- */
+  var navDrop = document.getElementById("navDrop");
+  var dropToggle = document.getElementById("dropToggle");
+
+  function setDrop(open) {
+    navDrop.classList.toggle("is-open", open);
+    dropToggle.setAttribute("aria-expanded", String(open));
+  }
+
+  dropToggle.addEventListener("click", function () {
+    setDrop(!navDrop.classList.contains("is-open"));
+  });
+  document.addEventListener("click", function (e) {
+    if (!navDrop.contains(e.target)) setDrop(false);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && navDrop.classList.contains("is-open")) {
+      setDrop(false);
+      dropToggle.focus();
+    }
+  });
+  navDrop.addEventListener("focusout", function (e) {
+    if (e.relatedTarget && !navDrop.contains(e.relatedTarget)) setDrop(false);
+  });
+
   nav.querySelectorAll("a").forEach(function (link) {
-    link.addEventListener("click", closeNav);
+    link.addEventListener("click", function () {
+      closeNav();
+      setDrop(false);
+    });
   });
 
   /* ---------- Hero speed lines + droplets ---------- */

@@ -2,18 +2,21 @@
    media.css — every breakpoint for the site lives here
    ========================================================== */
 
+/* ---------- Tighten the menu before it runs out of room ---------- */
+@media (max-width: 1280px) {
+  .site-nav { gap: 14px; }
+  .site-nav a:not(.btn) { font-size: 0.85rem; }
+  .drop-toggle { font-size: 0.85rem; }
+}
+
 /* ---------- Small laptops ---------- */
 @media (max-width: 1100px) {
   h1 { font-size: 3.3rem; }
-  .site-nav { gap: 18px; }
-  .site-nav a:not(.btn) { font-size: 0.85rem; }
   .shot { flex-basis: calc(33.333% - 12px); }
 }
 
-/* ---------- Tablets ---------- */
-@media (max-width: 900px) {
-  html { scroll-padding-top: 80px; }
-
+/* ---------- Menu collapses to the hamburger ---------- */
+@media (max-width: 1050px) {
   /* slide-down menu */
   .nav-toggle { display: flex; }
   .site-nav {
@@ -30,9 +33,35 @@
     border-bottom: 4px solid var(--wave);
     transition: max-height 0.3s ease, padding 0.3s ease;
   }
-  .site-nav.is-open { max-height: 480px; padding: 12px 24px 22px; }
+  .site-nav.is-open { max-height: 900px; padding: 12px 24px 22px; }
   .site-nav a:not(.btn) { width: 100%; padding: 14px 0; font-size: 1rem; border-bottom: 2px solid var(--sand); }
   .site-nav .btn { margin-top: 16px; }
+
+  /* dropdown becomes an accordion inside the menu */
+  .nav-drop { flex-direction: column; width: 100%; }
+  .drop-toggle { justify-content: space-between; width: 100%; padding: 14px 0; font-size: 1rem; border-bottom: 2px solid var(--sand); }
+  .drop-menu {
+    position: static;
+    width: 100%;
+    max-height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: max-height 0.3s ease;
+  }
+  .nav-drop.is-open .drop-menu { max-height: 400px; transform: none; }
+  .site-nav .drop-menu a { padding: 12px 0 12px 14px; font-size: 0.95rem; border-bottom: 2px solid var(--sand); border-radius: 0; }
+  .site-nav .drop-menu a:hover { transform: none; }
+}
+
+/* ---------- Tablets ---------- */
+@media (max-width: 900px) {
+  html { scroll-padding-top: 80px; }
 
   .hero { padding: 50px 24px 120px; }
   .hero-inner { flex-direction: column; gap: 44px; }
@@ -71,6 +100,7 @@
   .reviews { padding: 64px 18px 130px; }
 
   .card { flex-basis: 100%; }
+  .reason { flex-basis: 100%; padding: 24px 20px 22px 22px; }
   .shot { flex-basis: calc(50% - 9px); border-width: 4px; }
   .wash img { aspect-ratio: 4 / 3; }
   .member { flex-basis: calc(50% - 15px); }
@@ -100,6 +130,13 @@
     background: var(--sun);
   }
   .quick-bar a + a { color: var(--white); background: var(--deep); }
+}
+
+/* ---------- Mouse users: dropdown also opens on hover ---------- */
+@media (hover: hover) and (min-width: 1051px) {
+  .nav-drop:hover .drop-menu { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+  /* invisible bridge so the menu doesn't close in the gap */
+  .drop-menu::before { content: ""; position: absolute; left: 0; top: -20px; width: 100%; height: 20px; }
 }
 
 /* ---------- Touch devices: no hover tilt ---------- */
