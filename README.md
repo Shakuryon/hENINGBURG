@@ -11,7 +11,7 @@ public/
   index.html   page markup, SEO tags, LocalBusiness schema
   styles.css   base styles and animations
   media.css    every breakpoint (1100px, 900px, 600px), touch and reduced-motion rules
-  index.js     nav, hero effects, scroll reveal, gallery filter, spray demo, quote form
+  index.js     nav + "Why Wash" dropdown, hero effects, scroll reveal, gallery filter, spray demo, quote form
   assets/      empty for now, see "Images" below
 ```
 
