@@ -1,0 +1,116 @@
+/* ==========================================================
+   media.css — every breakpoint for the site lives here
+   ========================================================== */
+
+/* ---------- Small laptops ---------- */
+@media (max-width: 1100px) {
+  h1 { font-size: 3.3rem; }
+  .site-nav { gap: 18px; }
+  .site-nav a:not(.btn) { font-size: 0.85rem; }
+  .shot { flex-basis: calc(33.333% - 12px); }
+}
+
+/* ---------- Tablets ---------- */
+@media (max-width: 900px) {
+  html { scroll-padding-top: 80px; }
+
+  /* slide-down menu */
+  .nav-toggle { display: flex; }
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    padding: 0 24px;
+    max-height: 0;
+    overflow: hidden;
+    background: var(--white);
+    border-bottom: 4px solid var(--wave);
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+  .site-nav.is-open { max-height: 480px; padding: 12px 24px 22px; }
+  .site-nav a:not(.btn) { width: 100%; padding: 14px 0; font-size: 1rem; border-bottom: 2px solid var(--sand); }
+  .site-nav .btn { margin-top: 16px; }
+
+  .hero { padding: 50px 24px 120px; }
+  .hero-inner { flex-direction: column; gap: 44px; }
+  .hero-copy, .hero-photo { flex: 1 1 auto; width: 100%; }
+  .hero-photo { max-width: 560px; }
+  .sun { width: 260px; height: 260px; top: -90px; right: -90px; }
+
+  .why { flex-direction: column; gap: 40px; }
+  .why-photo, .why-copy { flex: 1 1 auto; width: 100%; }
+
+  .review-row { flex-direction: column; }
+  .contact-inner { flex-direction: column; gap: 40px; }
+
+  h2 { font-size: 2.3rem; }
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  body { padding-bottom: 62px; } /* room for the quick bar */
+
+  .site-header { padding: 6px 16px; }
+  .logo img { width: 120px; }
+
+  h1 { font-size: 2.45rem; text-shadow: 3px 3px 0 var(--deep); }
+  h2 { font-size: 1.95rem; }
+  .hero-sub { font-size: 1.05rem; }
+  .hero-actions .btn { width: 100%; }
+  .hud li { flex: 1 1 0; min-width: 0; padding: 8px 10px; }
+  .hud strong { font-size: 1.4rem; }
+  .hud span { font-size: 0.66rem; letter-spacing: 0.6px; }
+  .hero-photo img { border-width: 6px; box-shadow: 8px 8px 0 var(--abyss); }
+  .photo-tag { left: -6px; bottom: 14px; font-size: 0.85rem; padding: 7px 12px; }
+
+  .section { padding: 64px 18px; }
+  .spray, .contact { padding: 64px 18px 70px; }
+  .reviews { padding: 64px 18px 130px; }
+
+  .card { flex-basis: 100%; }
+  .shot { flex-basis: calc(50% - 9px); border-width: 4px; }
+  .wash img { aspect-ratio: 4 / 3; }
+  .member { flex-basis: calc(50% - 15px); }
+  .member img { width: 130px; height: 130px; }
+
+  .big-phone { font-size: 2.5rem; }
+  .quote-form { padding: 22px 18px; }
+
+  /* sticky call / book bar */
+  .quick-bar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 60;
+    display: flex;
+    width: 100%;
+    border-top: 3px solid var(--abyss);
+  }
+  .quick-bar a {
+    flex: 1 1 50%;
+    padding: 16px 8px;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--abyss);
+    background: var(--sun);
+  }
+  .quick-bar a + a { color: var(--white); background: var(--deep); }
+}
+
+/* ---------- Touch devices: no hover tilt ---------- */
+@media (hover: none) {
+  .card:hover, .shot:hover, .member:hover img { transform: none; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+  .speed-lines { display: none; }
+}
